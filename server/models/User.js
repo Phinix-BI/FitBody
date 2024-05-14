@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const userModel = mongoose.Schema({
   id: { type: Number },
@@ -33,6 +33,6 @@ const userModel = mongoose.Schema({
   },
 });
 
-const Users = mongoose.model("User", userModel);
+const User = mongoose.model("User", userModel);
 
-module.exports = Users;
+export default User;

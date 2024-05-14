@@ -6,6 +6,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+//Importing Database Connection File
+import connectDB from './db/index.js';
+
 // Importing the Router Files
 import welcomeRouter from './routes/welcomeRoute.js';
 import AuthRoute from './routes/auth.js';
@@ -46,22 +49,10 @@ server.use((obj, req, res, next) => {
     });
 });
 
-// Database connection Function 
-const ConnetMongoDB = async () => {
-    try {
-        await mongoose.connect('mongodb://localhost:27017/fitbody');
-        console.log('DB connected !');
-    } catch (error) { 
-       console.error('Error: ', error);
-        console.log('DB connection failed');
-    }
-}
-
-
 // Server Listening
 
 server.listen(port, function check (error) {
-    ConnetMongoDB();
+    connectDB();
     if (error) {
         console.error('Error: ', error);
     }

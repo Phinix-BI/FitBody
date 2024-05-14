@@ -1,6 +1,6 @@
-const User = require("../models/userModel");
+import User  from "../models/User.js";
 
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   console.log(req.body);
   const { userName, age, email, password, contact } = req.body;
 
@@ -39,7 +39,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-const authUser = async (req, res) => {
+export const authUser = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -56,4 +56,4 @@ const authUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, authUser };
+
