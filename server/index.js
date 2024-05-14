@@ -5,6 +5,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 //Importing Database Connection File
 import connectDB from './db/index.js';
@@ -12,6 +13,7 @@ import connectDB from './db/index.js';
 // Importing the Router Files
 import welcomeRouter from './routes/welcomeRoute.js';
 import AuthRoute from './routes/auth.js';
+import communityChatRoute from './routes/communityChatRoute.js';
 
 // Iniliazing Express Server
 const server = express();
@@ -21,6 +23,8 @@ const port = 3000; // Port Number
 
 dotenv.config();
 server.use(express.json());
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors(
     {
         origin: "https:localhost:3000",
@@ -33,6 +37,7 @@ server.use(cors(
 
 server.use('/', welcomeRouter);
 server.use("/api/auth", AuthRoute);
+server.use("/api/v1", communityChatRoute)
 
 
 // Response Handler Middleware Which will send response to the client in the form of JSON Object 
